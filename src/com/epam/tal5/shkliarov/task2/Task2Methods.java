@@ -26,7 +26,7 @@ public class Task2Methods {
 
 
     public static int[] bubbleSort(int[] array) {
-        int t  = 0;
+        int t;
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = i+1; j < array.length; j++) {
                 if (array[i]  <  array[j])
@@ -41,8 +41,8 @@ public class Task2Methods {
     }
 
     public static void lengthSortDesc(int[] numbersArray, int[] quantitiesArray) {
-        int t = 0;
-        int k = 0;
+        int t;
+        int k;
         for (int i = 0; i < quantitiesArray.length - 1; i++) {
             for (int j = i + 1; j < quantitiesArray.length; j++) {
                 if (quantitiesArray[i] < quantitiesArray[j]) {
@@ -62,8 +62,8 @@ public class Task2Methods {
     }
 
     public static void lengthSortAsc(int[] numbersArray, int[] quantitiesArray) {
-        int t = 0;
-        int k = 0;
+        int t;
+        int k;
         for (int i = 0; i < quantitiesArray.length - 1; i++) {
             for (int j = i + 1; j < quantitiesArray.length; j++) {
                 if (quantitiesArray[i] > quantitiesArray[j]) {
