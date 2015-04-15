@@ -56,7 +56,7 @@ public class Task2Methods {
         int shortestNum = numbersArray[0];
         int shortest = quantitiesArray[0];
         int longest = quantitiesArray[0];
-        for (int i = 0; i < quantitiesArray.length - 1; i++) {
+        for (int i = 0; i < quantitiesArray.length; i++) {
             if (shortest > quantitiesArray[i]) {
                 shortestNum = numbersArray[i];
                 shortest = quantitiesArray[i];
