@@ -4,6 +4,7 @@ package com.epam.tal5.shkliarov.task2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Task2Methods {
 
@@ -93,7 +94,46 @@ public class Task2Methods {
         return quantitiesArray;
     }
 
-    public static void longestAndShortestNumber(int[] numbersArray, int[] quantitiesArray) throws IOException {
+    public static int elementLengthCounter(int element) {
+        int length = 0;
+        for (double j = (double) element; j >= 1 || j <= -1; j /= 10) {
+            ++length;
+        }
+        return length;
+    }
+
+    public static int avgLengthCounter(int[] quantities) {
+        int avgLength = 0;
+        for (int quantity : quantities) {
+            avgLength += quantity;
+        }
+        avgLength = avgLength / quantities.length;
+        return avgLength;
+    }
+
+    public static void greaterThanAvgLength(int[] numbersArray, int[] quantitiesArray) {
+        int avgLen = avgLengthCounter(quantitiesArray);
+        System.out.println();
+        for (int i = 0; i < quantitiesArray.length; i++) {
+            if (quantitiesArray[i] > avgLen) {
+                System.out.println(quantitiesArray[i] + " " + numbersArray[i]);
+
+            }
+        }
+    }
+
+    public static void lessThanAvgLength(int[] numbersArray, int[] quantitiesArray) {
+        int avgLen = avgLengthCounter(quantitiesArray);
+        System.out.println();
+        for (int i = 0; i < quantitiesArray.length; i++) {
+            if (quantitiesArray[i] < avgLen) {
+                System.out.println(quantitiesArray[i] + " " + numbersArray[i]);
+
+            }
+        }
+    }
+
+    public static void longestAndShortestNumber(int[] numbersArray, int[] quantitiesArray) {
         int longestNum = numbersArray[0];
         int shortestNum = numbersArray[0];
         int shortest = quantitiesArray[0];
@@ -111,5 +151,9 @@ public class Task2Methods {
         }
         System.out.println(shortestNum + " " + shortest);
         System.out.println(longestNum + " " + longest);
+    }
+
+    public static void minCountOfDifferentNums(int[] numbersArray) {
+
     }
 }
