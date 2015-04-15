@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class Task2Methods {
 
-    private static int[] fullLinearArrayInit(int n) throws IOException {
+    public static int[] fullLinearArrayInit(int n) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int[] array = new int[n];
         for (int i = 0; i < array.length; i++) {
@@ -16,7 +16,7 @@ public class Task2Methods {
         return array;
     }
 
-    private static int[] emptyLinearArrayInit(int n) {
+    public static int[] emptyLinearArrayInit(int n) {
         int[] array = new int[n];
         for (int i = 0; i < array.length; i++) {
             array[i] = 0;
@@ -25,7 +25,7 @@ public class Task2Methods {
     }
 
 
-    private static int[] bubbleSort(int[] array) {
+    public static int[] bubbleSort(int[] array) {
         int t  = 0;
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = i+1; j < array.length; j++) {
@@ -40,22 +40,65 @@ public class Task2Methods {
         return array;
     }
 
-    public static void longestAndShortestNumber() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter n");
+    public static void lengthSortDesc(int[] numbersArray, int[] quantitiesArray) {
+        int t = 0;
+        int k = 0;
+        for (int i = 0; i < quantitiesArray.length - 1; i++) {
+            for (int j = i + 1; j < quantitiesArray.length; j++) {
+                if (quantitiesArray[i] < quantitiesArray[j]) {
+                    t = quantitiesArray[i];
+                    k = numbersArray[i];
+                    quantitiesArray[i] = quantitiesArray[j];
+                    numbersArray[i] = numbersArray[j];
+                    quantitiesArray[j] = t;
+                    numbersArray[j] = k;
+                }
+            }
+        }
+        System.out.println();
+        for (int i = 0; i < quantitiesArray.length; i++) {
+            System.out.println(quantitiesArray[i] + " " + numbersArray[i]);
+        }
+    }
 
-        int n = Integer.parseInt(reader.readLine());
-        int[] numbersArray = fullLinearArrayInit(n);
-        int[] quantitiesArray = emptyLinearArrayInit(n);
-        for (int i = 0; i < numbersArray.length; i++) {
-            for (double j = (double) numbersArray[i]; j >= 1 || j <= -1; j /= 10) {
+    public static void lengthSortAsc(int[] numbersArray, int[] quantitiesArray) {
+        int t = 0;
+        int k = 0;
+        for (int i = 0; i < quantitiesArray.length - 1; i++) {
+            for (int j = i + 1; j < quantitiesArray.length; j++) {
+                if (quantitiesArray[i] > quantitiesArray[j]) {
+                    t = quantitiesArray[i];
+                    k = numbersArray[i];
+                    quantitiesArray[i] = quantitiesArray[j];
+                    numbersArray[i] = numbersArray[j];
+                    quantitiesArray[j] = t;
+                    numbersArray[j] = k;
+                }
+            }
+        }
+        System.out.println();
+        for (int i = 0; i < quantitiesArray.length; i++) {
+            System.out.println(quantitiesArray[i] + " " + numbersArray[i]);
+        }
+    }
+
+
+    public static int[] lengthsCounter(int[] numbers) {
+        int[] quantitiesArray = emptyLinearArrayInit(numbers.length);
+        for (int i = 0; i < numbers.length; i++) {
+            for (double j = (double) numbers[i]; j >= 1 || j <= -1; j /= 10) {
                 ++quantitiesArray[i];
             }
         }
+        return quantitiesArray;
+    }
+
+    public static void longestAndShortestNumber(int[] numbersArray, int[] quantitiesArray) throws IOException {
         int longestNum = numbersArray[0];
         int shortestNum = numbersArray[0];
         int shortest = quantitiesArray[0];
         int longest = quantitiesArray[0];
+
         for (int i = 0; i < quantitiesArray.length; i++) {
             if (shortest > quantitiesArray[i]) {
                 shortestNum = numbersArray[i];
@@ -66,10 +109,7 @@ public class Task2Methods {
                 longest = quantitiesArray[i];
             }
         }
-
         System.out.println(shortestNum + " " + shortest);
         System.out.println(longestNum + " " + longest);
     }
-
-
 }

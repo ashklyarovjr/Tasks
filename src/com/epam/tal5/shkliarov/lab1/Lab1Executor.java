@@ -2,5 +2,7 @@ package com.epam.tal5.shkliarov.lab1;
 
 
 public class Lab1Executor {
+    public static void main(String[] args) {
 
+    }
 }
