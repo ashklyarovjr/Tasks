@@ -48,7 +48,7 @@ public class Task2Methods {
         int[] numbersArray = fullLinearArrayInit(n);
         int[] quantitiesArray = emptyLinearArrayInit(n);
         for (int i = 0; i < numbersArray.length; i++) {
-            for (double j = (double) numbersArray[i]; j >= 1; j /= 10) {
+            for (double j = (double) numbersArray[i]; j >= 1 || j <= -1; j /= 10) {
                 ++quantitiesArray[i];
             }
         }
