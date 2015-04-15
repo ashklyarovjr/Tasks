@@ -43,10 +43,8 @@ public class Task2Methods {
     public static void longestAndShortestNumber() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter n");
-        int n = Integer.parseInt(reader.readLine());
-        int longestNum = 0;
-        int shortestNum = 0;
 
+        int n = Integer.parseInt(reader.readLine());
         int[] numbersArray = fullLinearArrayInit(n);
         int[] quantitiesArray = emptyLinearArrayInit(n);
         for (int i = 0; i < numbersArray.length; i++) {
@@ -54,14 +52,16 @@ public class Task2Methods {
                 ++quantitiesArray[i];
             }
         }
+        int longestNum = numbersArray[0];
+        int shortestNum = numbersArray[0];
         int shortest = quantitiesArray[0];
         int longest = quantitiesArray[0];
         for (int i = 0; i < quantitiesArray.length - 1; i++) {
-            if (shortest > quantitiesArray[i+1]) {
+            if (shortest > quantitiesArray[i]) {
                 shortestNum = numbersArray[i];
                 shortest = quantitiesArray[i];
             }
-            else if (longest < quantitiesArray[i+1]) {
+            else if (longest < quantitiesArray[i]) {
                 longestNum = numbersArray[i];
                 longest = quantitiesArray[i];
             }
