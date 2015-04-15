@@ -29,9 +29,8 @@ public class Task2Methods {
     public static int[] bubbleSort(int[] array) {
         int t;
         for (int i = 0; i < array.length - 1; i++) {
-            for (int j = i+1; j < array.length; j++) {
-                if (array[i]  <  array[j])
-                {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] < array[j]) {
                     t = array[i];
                     array[i] = array[j];
                     array[j] = t;
@@ -143,8 +142,7 @@ public class Task2Methods {
             if (shortest > quantitiesArray[i]) {
                 shortestNum = numbersArray[i];
                 shortest = quantitiesArray[i];
-            }
-            else if (longest < quantitiesArray[i]) {
+            } else if (longest < quantitiesArray[i]) {
                 longestNum = numbersArray[i];
                 longest = quantitiesArray[i];
             }
@@ -153,7 +151,38 @@ public class Task2Methods {
         System.out.println(longestNum + " " + longest);
     }
 
-    public static void minCountOfDifferentNums(int[] numbersArray) {
-
+    public static int countOfDifferentNums(int number) {
+        int innerCounter = 0;
+        int outerCounter = 0;
+        String numberString = Integer.toString(number);
+        char[] numberCharArr = numberString.toCharArray();
+        if (numberCharArr.length >= 2) {
+            for (int i = 0; i < numberCharArr.length - 1; i++) {
+                if (innerCounter != 0) {
+                    outerCounter++;
+                }
+                innerCounter = 0;
+                for (int j = i + 1; j < numberCharArr.length; j++) {
+                    if (numberCharArr[i] != numberCharArr[j]) {
+                        innerCounter++;
+                    } else {
+                        innerCounter = 0;
+                        break;
+                    }
+                }
+                if (innerCounter != 0) {
+                    for (int j = i + 1; j >= 0; j--) {
+                        if (numberCharArr[i] == numberCharArr[j]) {
+                            innerCounter = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+            System.out.println(outerCounter);
+            return outerCounter;
+        } else {
+            return 1;
+        }
     }
 }
