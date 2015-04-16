@@ -8,6 +8,30 @@ import java.util.Arrays;
 
 public class Task2Methods {
 
+    public static void maxArrayElemWithPair(int[] arrayQuant, int[] arrayPair) {
+        int maxQuant = arrayQuant[0];
+        int maxPair = 0;
+        for (int i = 0; i < arrayQuant.length; i++) {
+            if (maxQuant < arrayQuant[i]) {
+                maxQuant = arrayQuant[i];
+                maxPair = arrayPair[i];
+            }
+        }
+        System.out.println(maxQuant + " " + maxPair);
+    }
+
+    public static void minArrayElemWithPair(int[] arrayQuant, int[] arrayPair) {
+        int minQuant = arrayQuant[0];
+        int minPair = 0;
+        for (int i = 0; i < arrayQuant.length; i++) {
+            if (minQuant < arrayQuant[i]) {
+                minQuant = arrayQuant[i];
+                minPair = arrayPair[i];
+            }
+        }
+        System.out.println(minQuant + " " + minPair);
+    }
+
     public static int[] fullLinearArrayInit(int n) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int[] array = new int[n];
@@ -151,38 +175,29 @@ public class Task2Methods {
         System.out.println(longestNum + " " + longest);
     }
 
-    public static int countOfDifferentNums(int number) {
-        int innerCounter = 0;
+    /*public static int countOfSimilarNums(int number) { //TODO Rewrite through lastIndexOf
         int outerCounter = 0;
         String numberString = Integer.toString(number);
         char[] numberCharArr = numberString.toCharArray();
         if (numberCharArr.length >= 2) {
             for (int i = 0; i < numberCharArr.length - 1; i++) {
-                if (innerCounter != 0) {
-                    outerCounter++;
-                }
-                innerCounter = 0;
                 for (int j = i + 1; j < numberCharArr.length; j++) {
-                    if (numberCharArr[i] != numberCharArr[j]) {
-                        innerCounter++;
-                    } else {
-                        innerCounter = 0;
-                        break;
-                    }
-                }
-                if (innerCounter != 0) {
-                    for (int j = i + 1; j >= 0; j--) {
-                        if (numberCharArr[i] == numberCharArr[j]) {
-                            innerCounter = 0;
-                            break;
-                        }
+                    if (numberCharArr[i] == numberCharArr[j]){
+                        outerCounter++;
                     }
                 }
             }
-            System.out.println(outerCounter);
             return outerCounter;
         } else {
             return 1;
         }
     }
+    public static void numsWithLesserCountOfUniqueElems(int[] numbersArray) {
+        int[] uniqueElemQuants = new int[numbersArray.length];
+        for (int i = 0; i < numbersArray.length; i++) {
+            uniqueElemQuants[i] =lengthsCounter(numbersArray)[i] - countOfSimilarNums(numbersArray[i]);
+        }
+        System.out.println("uniqueElemQuants");
+        System.out.println(Arrays.toString(uniqueElemQuants));
+    }*/
 }
