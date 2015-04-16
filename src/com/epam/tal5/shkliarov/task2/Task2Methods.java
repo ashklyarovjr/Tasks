@@ -175,15 +175,20 @@ public class Task2Methods {
         System.out.println(longestNum + " " + longest);
     }
 
-    /*public static int countOfSimilarNums(int number) { //TODO Rewrite through lastIndexOf
+    public static int countOfSimilarNums(int number) {
         int outerCounter = 0;
         String numberString = Integer.toString(number);
         char[] numberCharArr = numberString.toCharArray();
+        int index = 0;
+        Arrays.sort(numberCharArr);
         if (numberCharArr.length >= 2) {
-            for (int i = 0; i < numberCharArr.length - 1; i++) {
-                for (int j = i + 1; j < numberCharArr.length; j++) {
-                    if (numberCharArr[i] == numberCharArr[j]){
+            for (int i = 1; i < numberCharArr.length; i++) {
+                for (int j = i - 1; j < i; j++) {
+                    index = i + j;
+                    if (numberCharArr[j] == numberCharArr[i]) {
                         outerCounter++;
+                    } else {
+                        i = index;
                     }
                 }
             }
@@ -199,5 +204,5 @@ public class Task2Methods {
         }
         System.out.println("uniqueElemQuants");
         System.out.println(Arrays.toString(uniqueElemQuants));
-    }*/
+    }
 }

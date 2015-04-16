@@ -20,6 +20,6 @@ public class Task2Executor {
         Task2Methods.lengthSortDesc(numbersArray, quantitiesArray);
         Task2Methods.greaterThanAvgLength(numbersArray, quantitiesArray);
         Task2Methods.lessThanAvgLength(numbersArray, quantitiesArray);
-        //Task2Methods.numsWithLesserCountOfUniqueElems(numbersArray);
+        Task2Methods.numsWithLesserCountOfUniqueElems(numbersArray);
     }
 }
