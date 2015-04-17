@@ -21,8 +21,5 @@ public class SelectionSorter {
         }
         long finish = System.currentTimeMillis() - start;
         System.out.println("SelectionSort time is: " + finish + " ms");
-
     }
-
-
 }

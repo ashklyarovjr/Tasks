@@ -21,5 +21,7 @@ public class Task2Executor {
         Task2Methods.greaterThanAvgLength(numbersArray, quantitiesArray);
         Task2Methods.lessThanAvgLength(numbersArray, quantitiesArray);
         Task2Methods.numsWithLesserCountOfUniqueElems(numbersArray);
+        System.out.println(Task2Methods.firstOnlyIncreasingElemsNumberSearch(numbersArray));
+        System.out.println(Task2Methods.onlyDifferentElemsNumber(543690787));
     }
 }

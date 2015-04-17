@@ -175,34 +175,91 @@ public class Task2Methods {
         System.out.println(longestNum + " " + longest);
     }
 
-    public static int countOfSimilarNums(int number) {
+    public static int countOfUniqueNums(int number) {
         int outerCounter = 0;
+        int innerCounter = 0;
         String numberString = Integer.toString(number);
-        char[] numberCharArr = numberString.toCharArray();
-        int index = 0;
-        Arrays.sort(numberCharArr);
-        if (numberCharArr.length >= 2) {
-            for (int i = 1; i < numberCharArr.length; i++) {
-                for (int j = i - 1; j < i; j++) {
-                    index = i + j;
-                    if (numberCharArr[j] == numberCharArr[i]) {
-                        outerCounter++;
-                    } else {
-                        i = index;
-                    }
+        for (int i = 0; i < numberString.length(); i++) {
+            char element = numberString.charAt(i);
+            innerCounter = 0;
+            for (int j = 0; j < numberString.length(); j++) {
+                if (element == numberString.charAt(j)) {
+                    ++innerCounter;
                 }
             }
-            return outerCounter;
-        } else {
-            return 1;
+            if (innerCounter == 1) {
+                ++outerCounter;
+            } else {
+                outerCounter = 0;
+            }
         }
+        return outerCounter;
     }
+
     public static void numsWithLesserCountOfUniqueElems(int[] numbersArray) {
         int[] uniqueElemQuants = new int[numbersArray.length];
         for (int i = 0; i < numbersArray.length; i++) {
-            uniqueElemQuants[i] =lengthsCounter(numbersArray)[i] - countOfSimilarNums(numbersArray[i]);
+            uniqueElemQuants[i] = countOfUniqueNums(numbersArray[i]);
         }
-        System.out.println("uniqueElemQuants");
-        System.out.println(Arrays.toString(uniqueElemQuants));
+
+    }
+
+    public static boolean onlyincreasingElemsNumber(int number) {
+        String stringNumber = Integer.toString(number);
+        char[] numberCharArr = stringNumber.toCharArray();
+        for (int i = 1; i < numberCharArr.length; i++) {
+            if (numberCharArr[i] - numberCharArr[i - 1] == 1) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static String firstOnlyIncreasingElemsNumberSearch(int[] numberArray) {
+        int index = 0;
+        int number = 0;
+        for (int i = 0; i < numberArray.length; i++) {
+            if (onlyincreasingElemsNumber(numberArray[i])) {
+                index = i;
+                number = numberArray[i];
+                break;
+            }
+        }
+        return index + " " + number + "\n";
+    }
+
+    public static boolean onlyDifferentElemsNumber(int number) {
+        String stringNumber = Integer.toString(number);
+        char[] numberCharArr = stringNumber.toCharArray();
+        Arrays.sort(numberCharArr);
+        for (int i = 1; i < numberCharArr.length; i++) {
+            if (numberCharArr[i - 1] != numberCharArr[i])
+                continue;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    public static String firstOnlyDifferentElemsNumberSearch(int[] numberArray) {
+        int index = 0;
+        int number = 0;
+        for (int i = 0; i < numberArray.length; i++) {
+            if (onlyDifferentElemsNumber(numberArray[i])) {
+                index = i;
+                number = numberArray[i];
+                break;
+            }
+        }
+        return index + " " + number + "\n";
+    }
+
+    public static boolean evenNums(int number) {
+        if (number % 2 == 0) {
+            return true;
+        } else
+            return false;
     }
 }

@@ -7,11 +7,18 @@ import java.util.Random;
 public class Lab1Executor {
     public static void main(String[] args) {
         Random random = new Random();
-        int[] fstTester = new int[10000];
-        int[] sndTester = new int[10000];
-        for (int i = 0; i < 10000; i++) {
+        int n = 10;
+        int[] fstTester = new int[n];
+        int[] sndTester = new int[n];
+        int[] thrdTester = new int[n];
+        int[] fTester = new int[n];
+        int[] fifTester = new int[n];
+        for (int i = 0; i < n; i++) {
             sndTester[i] = random.nextInt(100);
             fstTester[i] = random.nextInt(100);
+            thrdTester[i] = random.nextInt(100);
+            fTester[i] = random.nextInt(100);
+            fifTester[i] = random.nextInt(100);
         }
         ArrayInverter.invert(fstTester);
         System.out.print(Arrays.toString(fstTester));
@@ -27,8 +34,17 @@ public class Lab1Executor {
         System.out.println(Arrays.toString(sndTester));
         System.out.println();
 
+        InsertionSort.insertionSort(thrdTester);
+        System.out.println(Arrays.toString(thrdTester));
+        System.out.println();
 
+        ShellSort.shellSort(fTester);
+        System.out.println(Arrays.toString(fTester));
+        System.out.println();
 
+        QuickSort.quicksort(fifTester);
+        System.out.println(Arrays.toString(fifTester));
+        System.out.println();
 
     }
 }
