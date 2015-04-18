@@ -5,8 +5,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Task2Methods {
+//--------------------------------------------------------------1 part--------------------------------------------------
 
     public static void maxArrayElemWithPair(int[] arrayQuant, int[] arrayPair) {
         int maxQuant = arrayQuant[0];
@@ -256,10 +258,63 @@ public class Task2Methods {
         return index + " " + number + "\n";
     }
 
-    public static boolean evenNums(int number) {
-        if (number % 2 == 0) {
-            return true;
-        } else
-            return false;
+    public static boolean evenOrOddNum(int number) {
+        return number % 2 == 0;
     }
+
+    public static boolean numberHasEqualOddAndEven(int number) {
+        int[] counter = new int[2];
+        String stringNumber = Integer.toString(number);
+        char[] numberCharArr = stringNumber.toCharArray();
+        for (char aNumberCharArr : numberCharArr) {
+            if (evenOrOddNum(aNumberCharArr))
+                counter[0]++;
+            else
+                counter[1]++;
+        }
+        return counter[0] == counter[1];
+    }
+
+    public static String firstNumberHasEqualOddAndEvenSearch(int[] numberArray) {
+        int index = 0;
+        int number = 0;
+        for (int i = 0; i < numberArray.length; i++) {
+            if (evenOrOddNum(numberArray[i])) {
+                if ((numberHasEqualOddAndEven(numberArray[i]))) {
+                    index = i;
+                    number = numberArray[i];
+                    break;
+                }
+            }
+        }
+        return index + " " + number + "\n";
+    }
+//------------------------------------------2 part ---------------------------------------------------------------------
+
+    public static void matrixInit(int size) {
+        int[][] matrix = new int[size][size];
+        Random random = new Random();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = random.nextInt(100);
+            }
+        }
+    }
+
+    public static void matrixSortByRows(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+
+        }
+    }
+
+    public static void matrixSortByCols(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+
+        }
+    }
+
+    public static int
+
+
+
 }
