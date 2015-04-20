@@ -50,7 +50,6 @@ public class Task2Methods {
         return array;
     }
 
-
     public static int[] bubbleSort(int[] array) {
         int t;
         for (int i = 0; i < array.length - 1; i++) {
@@ -106,7 +105,6 @@ public class Task2Methods {
             System.out.println(quantitiesArray[i] + " " + numbersArray[i]);
         }
     }
-
 
     public static int[] lengthsCounter(int[] numbers) {
         int[] quantitiesArray = emptyLinearArrayInit(numbers.length);
@@ -177,7 +175,7 @@ public class Task2Methods {
 
     public static int countOfUniqueNums(int number) {
         int outerCounter = 0;
-        int innerCounter = 0;
+        int innerCounter;
         String numberString = Integer.toString(number);
         for (int i = 0; i < numberString.length(); i++) {
             char element = numberString.charAt(i);
@@ -196,12 +194,12 @@ public class Task2Methods {
         return outerCounter;
     }
 
-    public static void numsWithLesserCountOfUniqueElems(int[] numbersArray) {
+    public static int[] numsWithLesserCountOfUniqueElems(int[] numbersArray) {
         int[] uniqueElemQuants = new int[numbersArray.length];
         for (int i = 0; i < numbersArray.length; i++) {
             uniqueElemQuants[i] = countOfUniqueNums(numbersArray[i]);
         }
-
+        return uniqueElemQuants;
     }
 
     public static boolean onlyincreasingElemsNumber(int number) {
@@ -290,6 +288,7 @@ public class Task2Methods {
         } else
             return index + " " + number + "\n";
     }
+
 //------------------------------------------2 part ---------------------------------------------------------------------
 
     public static int[][] matrixRandomInit(int size) {
@@ -303,7 +302,20 @@ public class Task2Methods {
     }
 
     public static int[][] matrixEmptyInit(int size) {
+        return new int[size][size];
+    }
+
+    public static int[][] matrixConsoleInit() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter size of matrix: ");
+        int size = Integer.parseInt(reader.readLine());
         int[][] matrix = new int[size][size];
+        System.out.println("Now fill in the matrix:");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                matrix[i][j] = Integer.parseInt(reader.readLine());
+            }
+        }
         return matrix;
     }
 
@@ -426,7 +438,7 @@ public class Task2Methods {
     public static int secondPositiveElementInARowIndexSearch(int[] row) {
         int index = 0;
         for (int i = firstPositiveElementInARowIndexSearch(row) + 1; i < row.length; i++) {
-            if (row[i] > 0){
+            if (row[i] > 0) {
                 index = i;
                 break;
             }
@@ -434,7 +446,7 @@ public class Task2Methods {
         return index;
     }
 
-    public static void sumBetweenFirstAndSecondPositiveElementsInARow(int[][] matrix){
+    public static void sumBetweenFirstAndSecondPositiveElementsInARow(int[][] matrix) {
         int sum = 0;
         for (int i = 0; i < matrix.length; i++) {
             int first = firstPositiveElementInARowIndexSearch(matrix[i]);
@@ -449,10 +461,10 @@ public class Task2Methods {
         }
     }
 
-    public static void someDegreesClockwiseTurn(int[][] matrix, int k) {
+    public static void someDegreesAntiClockwiseTurn(int[][] matrix, int k) {
         for (int e = 0; e < k; e++) {
             for (int i = 0; i < matrix.length / 2; i++) {
-                for (int j = i; j < matrix.length - 2 - j; j++) {
+                for (int j = i; j < matrix.length - 1 - j; j++) {
                     int temp = matrix[i][j];
                     matrix[i][j] = matrix[j][matrix.length - 1 - i];
                     matrix[j][matrix.length - 1 - i] = matrix[matrix.length - 1 - i][matrix.length - 1 - j];
@@ -463,27 +475,125 @@ public class Task2Methods {
         }
     }
 
-
-
-    public static void findAndPrintIncreasingLines(int[][] matrix){
-        int min = Integer.MIN_VALUE;
+    public static int[] matrixToArray(int[][] matrix) {
+        int[] array = new int[matrix.length * matrix.length];
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-     //           if ()
+            for (int j = 0; j < matrix.length; j++) {
+                array[i * matrix.length + j] = matrix[i][j];
             }
         }
+        return array;
+    }
+
+    //TODO Finish This!!
+    public static void findAndPrintIncreasingLines(int[][] matrix) {
+        int min = Integer.MIN_VALUE;
+        int[] array = matrixToArray(matrix);
+        int fromIndex = 0;
+        int toIndex = 0;
+        int counter = 0;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i + 1] - array[i] == 1) {
+
+            } else {
+                System.out.print("*");
+            }
+        }
+    }
+
+    public static int matrixArithmeticAverage(int[][] matrix) {
+        int arithmeticAverage = 0;
+        for (int[] aMatrix : matrix) {
+            for (int j = 0; j < matrix.length; j++) {
+                arithmeticAverage += aMatrix[j];
+            }
+        }
+        return arithmeticAverage / (matrix.length * matrix.length);
+    }
+
+    public static int[][] matrixMinusArithmeticAverage(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                matrix[i][j] -= matrixArithmeticAverage(matrix);
+            }
+        }
+        return matrix;
+    }
+
+    public static int[][] nullsToTheEndOfEachRowInMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] == 0) {
+                    for (int k = matrix.length - 1; k > j; k--) {
+                        if (matrix[i][k] != 0) {
+                            int temp = matrix[i][k];
+                            matrix[i][k] = matrix[i][j];
+                            matrix[i][j] = temp;
+                        }
+                    }
+                }
+            }
+        }
+        return matrix;
+    }
+
+    public static int[][] compressMatrix(int[][] matrix) {
+        int newMatrixRows = matrix.length;
+        int newMatrixCols = matrix.length;
+        int counter = 0;
+        int colIndex = 0;
+        int rowIndex = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[j][i] == 0) {
+                    counter++;
+                    colIndex = i;
+                }
+            }
+            if (counter == matrix.length) {
+                newMatrixCols--;
+                counter = 0;
+            } else {
+                counter = 0;
+            }
+        }
+        counter = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == 0) {
+                    counter++;
+                    rowIndex = i;
+                }
+            }
+            if (counter == matrix.length) {
+                newMatrixRows--;
+                counter = 0;
+            } else {
+                counter = 0;
+
+            }
+        }
+        if (newMatrixCols != matrix.length) {
+            matrix = cycleRightMove(matrix.length - 1 - colIndex, matrix);
+        }
+        if (newMatrixRows != matrix.length) {
+            matrix = cycleDownMove(matrix.length - 1 - rowIndex, matrix);
+        }
+        int[][] newMatrix = new int[newMatrixRows][newMatrixCols];
+        for (int i = 0; i < newMatrix.length; i++) {
+            for (int j = 0; j < newMatrix[i].length; j++) {
+                newMatrix[i][j] = matrix[i][j];
+            }
+        }
+        return newMatrix;
     }
 
     public static void matrixPrint(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
+        for (int[] aMatrix : matrix) {
             System.out.println("\n");
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j] + " ");
+            for (int anAMatrix : aMatrix) {
+                System.out.print(anAMatrix + " ");
             }
         }
     }
-
-
-
-
 }

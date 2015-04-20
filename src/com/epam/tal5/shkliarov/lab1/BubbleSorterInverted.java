@@ -1,6 +1,9 @@
 package com.epam.tal5.shkliarov.lab1;
 
-public class BubbleSorter {
+
+//Lab 1 Task 3
+
+public class BubbleSorterInverted {
     public static void sort(int[] arr) {
         long start = System.currentTimeMillis();
         for (int barrier = 0; barrier < arr.length; barrier++) {

@@ -32,7 +32,7 @@ public class Task2FirstPartExecutor {
 
         System.out.println(Task2Methods.firstNumberHasEqualOddAndEvenSearch(numbersArray));*/
 
-        int[][] matrix = Task2Methods.matrixRandomInit(10);
+        int[][] matrix = Task2Methods.matrixRandomInit(5);
 
         Task2Methods.matrixPrint(matrix);
         System.out.println();
@@ -67,7 +67,21 @@ public class Task2FirstPartExecutor {
 
         Task2Methods.sumBetweenFirstAndSecondPositiveElementsInARow(matrix);*/
 
+        /*Task2Methods.someDegreesAntiClockwiseTurn(matrix, 1);
+        Task2Methods.matrixPrint(matrix);*/
 
+        int[][] matrix_second = Task2Methods.matrixConsoleInit();
+        Task2Methods.matrixPrint(matrix_second);
+        System.out.println();
+        matrix_second = Task2Methods.compressMatrix(matrix_second);
+        Task2Methods.matrixPrint(matrix_second);
 
+        System.out.println(Arrays.toString(Task2Methods.matrixToArray(matrix)));
+        //Task2Methods.findAndPrintIncreasingLines(matrix);
+
+        int[][] matrix_third = Task2Methods.matrixConsoleInit();
+        Task2Methods.matrixPrint(matrix_third);
+        matrix_third = Task2Methods.nullsToTheEndOfEachRowInMatrix(matrix_third);
+        Task2Methods.matrixPrint(matrix_third);
     }
 }

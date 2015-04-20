@@ -26,7 +26,7 @@ public class Lab1Executor {
 
         System.out.println(Arrays.toString(Merger.merge(fstTester, sndTester)));
 
-        BubbleSorter.sort(fstTester);
+        BubbleSorterInverted.sort(fstTester);
         System.out.println(Arrays.toString(fstTester));
         System.out.println();
 
