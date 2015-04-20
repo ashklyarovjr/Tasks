@@ -30,11 +30,11 @@ public class Lab1Executor {
         System.out.println(Arrays.toString(fstTester));
         System.out.println();
 
-        SelectionSorter.sort(sndTester);
+        SelectionSorterOptimized.sort(sndTester);
         System.out.println(Arrays.toString(sndTester));
         System.out.println();
 
-        InsertionSort.insertionSort(thrdTester);
+        InsertionSortOptimized.insertionSort(thrdTester);
         System.out.println(Arrays.toString(thrdTester));
         System.out.println();
 
