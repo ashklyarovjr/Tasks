@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Random;
 
 public class Task2Methods {
 //--------------------------------------------------------------1 part--------------------------------------------------
@@ -142,7 +141,6 @@ public class Task2Methods {
         for (int i = 0; i < quantitiesArray.length; i++) {
             if (quantitiesArray[i] > avgLen) {
                 System.out.println(quantitiesArray[i] + " " + numbersArray[i]);
-
             }
         }
     }
@@ -287,33 +285,204 @@ public class Task2Methods {
                 }
             }
         }
-        return index + " " + number + "\n";
+        if (index == 0 && number == 0) {
+            return "There's no even number with equal quantity of odd and even elements";
+        } else
+            return index + " " + number + "\n";
     }
 //------------------------------------------2 part ---------------------------------------------------------------------
 
-    public static void matrixInit(int size) {
+    public static int[][] matrixRandomInit(int size) {
         int[][] matrix = new int[size][size];
-        Random random = new Random();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = random.nextInt(100);
+                matrix[i][j] = (int) (Math.random() * (2 * size + 1)) - size;
             }
         }
+        return matrix;
+    }
+
+    public static int[][] matrixEmptyInit(int size) {
+        int[][] matrix = new int[size][size];
+        return matrix;
     }
 
     public static void matrixSortByRows(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
-
+            for (int j = 0; j < matrix[i].length - 1; j++) {
+                for (int k = j + 1; k < matrix[i].length; k++) {
+                    if (matrix[i][j] > matrix[i][k]) {
+                        int temp = matrix[i][k];
+                        matrix[i][k] = matrix[i][j];
+                        matrix[i][j] = temp;
+                    }
+                }
+            }
         }
+    }
+
+    public static int matrixSizeDetector(int[] array) {
+        int size = 0;
+        for (int i = 1; i <= array.length; ++i) {
+            if (array.length <= i * i) {
+                size = i;
+                break;
+            }
+        }
+        return size;
     }
 
     public static void matrixSortByCols(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-
+        for (int i = 0; i < matrix.length - 1; i++) {
+            for (int j = i + 1; j < matrix.length; j++) {
+                for (int k = 0; k < matrix[i].length; k++) {
+                    if (matrix[i][k] > matrix[j][k]) {
+                        int temp = matrix[j][k];
+                        matrix[j][k] = matrix[i][k];
+                        matrix[i][k] = temp;
+                    }
+                }
+            }
         }
     }
 
-    public static int
+    public static int[][] fromArrayToMatrix(int[] array) {
+        int size = matrixSizeDetector(array);
+        int k = 0;
+        int[][] matrix = new int[size][size];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (array.length > k)
+                    matrix[i][j] = array[k];
+                k++;
+            }
+        }
+        return matrix;
+    }
+
+    public static int[][] cycleRightMove(int step, int[][] matrix) {
+        int size = matrix[0].length;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < step; j++) {
+                int temp = matrix[i][size - 1];
+                for (int k = size - 1; k > 0; k--) {
+                    matrix[i][k] = matrix[i][k - 1];
+                }
+                matrix[i][0] = temp;
+            }
+        }
+        return matrix;
+    }
+
+    public static int[][] cycleLeftMove(int step, int[][] matrix) {
+        int size = matrix[0].length;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < step; j++) {
+                int temp = matrix[i][0];
+                for (int k = 0; k < size - 1; k++) {
+                    matrix[i][k] = matrix[i][k + 1];
+                }
+                matrix[i][size - 1] = temp;
+            }
+        }
+        return matrix;
+    }
+
+    public static int[][] cycleUpMove(int step, int[][] matrix) {
+        int size = matrix.length;
+        for (int i = 0; i < step; i++) {
+            int[] temp = matrix[0];
+            for (int j = 0; j < size - 1; j++) {
+                matrix[j] = matrix[j + 1];
+            }
+            matrix[size - 1] = temp;
+        }
+        return matrix;
+    }
+
+    public static int[][] cycleDownMove(int step, int[][] matrix) {
+        int size = matrix.length;
+        for (int i = 0; i < step; i++) {
+            int[] temp = matrix[size - 1];
+            for (int j = size - 1; j > 0; j--) {
+                matrix[j] = matrix[j - 1];
+            }
+            matrix[0] = temp;
+        }
+        return matrix;
+    }
+
+    public static int firstPositiveElementInARowIndexSearch(int[] row) {
+        int index = 0;
+        for (int i = 0; i < row.length; i++) {
+            if (row[i] > 0) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public static int secondPositiveElementInARowIndexSearch(int[] row) {
+        int index = 0;
+        for (int i = firstPositiveElementInARowIndexSearch(row) + 1; i < row.length; i++) {
+            if (row[i] > 0){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public static void sumBetweenFirstAndSecondPositiveElementsInARow(int[][] matrix){
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            int first = firstPositiveElementInARowIndexSearch(matrix[i]);
+            int second = secondPositiveElementInARowIndexSearch(matrix[i]);
+            if ((second - first) > 1) {
+                for (int j = first + 1; j < second; j++) {
+                    sum += sum + matrix[i][j];
+                }
+            }
+            System.out.println(i + " " + sum);
+            sum = 0;
+        }
+    }
+
+    public static void someDegreesClockwiseTurn(int[][] matrix, int k) {
+        for (int e = 0; e < k; e++) {
+            for (int i = 0; i < matrix.length / 2; i++) {
+                for (int j = i; j < matrix.length - 2 - j; j++) {
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[j][matrix.length - 1 - i];
+                    matrix[j][matrix.length - 1 - i] = matrix[matrix.length - 1 - i][matrix.length - 1 - j];
+                    matrix[matrix.length - 1 - i][matrix.length - 1 - j] = matrix[matrix.length - 1 - j][i];
+                    matrix[matrix.length - 1 - j][i] = temp;
+                }
+            }
+        }
+    }
+
+
+
+    public static void findAndPrintIncreasingLines(int[][] matrix){
+        int min = Integer.MIN_VALUE;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+     //           if ()
+            }
+        }
+    }
+
+    public static void matrixPrint(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.println("\n");
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+        }
+    }
+
 
 
 
